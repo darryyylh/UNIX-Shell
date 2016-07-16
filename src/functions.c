@@ -41,13 +41,14 @@ void isExitCmd(char* input) {
 	
 	if (strcmp(input, "exit") == 0)
 		exit(0);
-
+		
 }
 
 
 /* Function forks and executes the command inputted by the user.
    If an unknown command is given, the child process is destroyed,
-   and if we cannot fork, the shell exits. Appropriate error checking is performed. */
+   and if we cannot fork, the shell exits. 
+   Appropriate error checking is also performed. */
 void executeCmd(char** command, int isRedirectCmd, char* redirectFile) {
 	
 	pid_t child_pid;
@@ -162,8 +163,6 @@ int checkForRedirectCmd(char** command) {
 		
 	return redirectBool;
 }
-
-
 
 
 

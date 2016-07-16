@@ -34,7 +34,7 @@ void shell() {
 	fflush(stdout);
 
 	if (signal(SIGINT, signalHandler) == SIG_ERR)
-		printf("\ncan't catch SIGINT\n");			
+		printf("\nCan't catch SIGINT\n");			
 
 	char* input = NULL;
 	size_t len = 0;
@@ -48,10 +48,11 @@ void shell() {
 		exit(0);
 	}
 
-	strtok(input, "\n"); // remove the trailing newline from the input string.
+	// remove the trailing newline from the input string.
+	strtok(input, "\n");
 
-	isExitCmd(input); // Check for 'exit' command, meaning we quit the shell.
-
+	// Check for 'exit' command, meaning we should quit the shell.
+	isExitCmd(input);
 
 	// Split the input string into an array, and NULL terminate it for passing to execvp().
   	char** command = malloc(sizeof(char*));
@@ -65,7 +66,7 @@ void shell() {
 		command[count] = temp;
 		count++;
 
-		//Space for next
+		// Add space for next.
 		command = realloc(command, (count + 1) * sizeof(char*));
 
 		temp = strtok(NULL, " ");
@@ -76,18 +77,19 @@ void shell() {
 	command[count++] = NULL;
 
 
-	// If the command is cd, a different function will handle the command.
+	// If the command is cd, a different function handles the command.
 	if (checkForChangeDirectoryCmd(command) == 1)
 		shell();
 
-	// If the command is a redirect, a different function will handle the command.
+	// If the command is a redirect, a different function handles the command.
 	else if (checkForRedirectCmd(command) == 1)
 		shell();
 	
-	// Fork and execute the command.
+	// Otherwise fork and execute the command.
 	else	
 		executeCmd(command, 0, NULL);
 
 }
+
 
 
