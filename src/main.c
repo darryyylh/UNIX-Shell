@@ -51,7 +51,7 @@ void shell() {
 	// remove the trailing newline from the input string.
 	strtok(input, "\n");
 
-	// Check for 'exit' command, meaning we should quit the shell.
+	// Check for 'exit' command.
 	isExitCmd(input);
 
 	// Split the input string into an array, and NULL terminate it for passing to execvp().
@@ -77,11 +77,11 @@ void shell() {
 	command[count++] = NULL;
 
 
-	// If the command is cd, a different function handles the command.
+	// If the command is cd, a different function handles it.
 	if (checkForChangeDirectoryCmd(command) == 1)
 		shell();
 
-	// If the command is a redirect, a different function handles the command.
+	// If the command is a redirect, a different function handles it.
 	else if (checkForRedirectCmd(command) == 1)
 		shell();
 	
@@ -90,6 +90,5 @@ void shell() {
 		executeCmd(command, 0, NULL);
 
 }
-
 
 

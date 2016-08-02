@@ -47,7 +47,7 @@ void isExitCmd(char* input) {
 
 /* Function forks and executes the command inputted by the user.
    If an unknown command is given, the child process is destroyed,
-   and if we cannot fork, the shell exits. 
+   and if we can't fork, the shell exits. 
    Appropriate error checking is also performed. */
 void executeCmd(char** command, int isRedirectCmd, char* redirectFile) {
 	
