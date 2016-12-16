@@ -18,9 +18,7 @@
 void shell();
 
 int main() {
-
 	while (!feof(stdin)) {
-
 		shell();
 	}
 
@@ -30,7 +28,6 @@ int main() {
 
 
 void shell() {
-	
 	fflush(stdout);
 
 	if (signal(SIGINT, signalHandler) == SIG_ERR)
@@ -40,7 +37,6 @@ void shell() {
 	size_t len = 0;
 
 	printPrompt();
-
 	getline(&input, &len, stdin);
 
 	if (feof(stdin)) {
@@ -62,7 +58,6 @@ void shell() {
   	temp = strtok(input, " ");
 
 	while (temp != NULL) {
-
 		command[count] = temp;
 		count++;
 
@@ -76,7 +71,6 @@ void shell() {
 	command = realloc(command, (count + 1) * sizeof(char*));
 	command[count++] = NULL;
 
-
 	// If the command is cd, a different function handles it.
 	if (checkForChangeDirectoryCmd(command) == 1)
 		shell();
@@ -88,7 +82,4 @@ void shell() {
 	// Otherwise fork and execute the command.
 	else	
 		executeCmd(command, 0, NULL);
-
 }
-
-

@@ -1,6 +1,6 @@
 # UNIX-Shell
-Simple implementation of the bash shell.
+An implementation of the bash shell.
 
 Compiling and Running:  
-	> gcc main.c functions.c -o shell  
-	> ./shell  
+> gcc main.c functions.c -o shell  
+> ./shell  
